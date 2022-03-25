@@ -10,19 +10,47 @@ public class SnakeCellController : MonoBehaviour
     {
         if (direction == DirectionOfMovement.Right)
         {
-            ColumnIndex++;
+            if (ColumnIndex == 9)
+            {
+                ColumnIndex = 0;
+            }
+            else
+            {
+                ColumnIndex++;
+            }
         }
         else if (direction == DirectionOfMovement.Left)
         {
-            ColumnIndex--;
+            if (ColumnIndex == 0)
+            {
+                ColumnIndex = 9;
+            }
+            else
+            {
+                ColumnIndex--;
+            }
         }
         else if (direction == DirectionOfMovement.Up)
         {
-            RowIndex++;
+            if (RowIndex == 9)
+            {
+                RowIndex = 0;
+            }
+            else
+            {
+                RowIndex++;
+            }
         }
         else if (direction == DirectionOfMovement.Down)
         {
-            RowIndex--;
+            if (RowIndex == 0)
+            {
+                RowIndex = 9;
+            }
+            else
+            {
+                RowIndex--;
+            }
         }
     }
 }

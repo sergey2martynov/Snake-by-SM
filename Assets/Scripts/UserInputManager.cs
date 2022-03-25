@@ -3,28 +3,35 @@ using UnityEngine;
 
 public class UserInputManager : MonoBehaviour
 {
-    public event Action<DirectionOfMovement> RightPressed;
+    public event Action<DirectionOfMovement> ArrowPressed;
+
+    public event Action EscapePressed;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            RightPressed?.Invoke(DirectionOfMovement.Right);
+            ArrowPressed?.Invoke(DirectionOfMovement.Right);
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            RightPressed?.Invoke(DirectionOfMovement.Left);
+            ArrowPressed?.Invoke(DirectionOfMovement.Left);
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            RightPressed?.Invoke(DirectionOfMovement.Up);
+            ArrowPressed?.Invoke(DirectionOfMovement.Up);
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            RightPressed?.Invoke(DirectionOfMovement.Down);
+            ArrowPressed?.Invoke(DirectionOfMovement.Down);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            EscapePressed?.Invoke();
         }
     }
 }

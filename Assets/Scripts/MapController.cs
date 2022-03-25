@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class MapController : MonoBehaviour
 {
-
     [SerializeField] private GameObject _fieldPrefab;
 
     [SerializeField] private GameObject _parentGameFields;
@@ -12,9 +11,9 @@ public class MapController : MonoBehaviour
 
     private List<List<FieldController>> _rows;
 
-    private int _numberOfRows = 10;
-    
-    private int _numberOfColumns = 10;
+    [SerializeField] private int _numberOfRows = 10;
+
+    [SerializeField] private int _numberOfColumns = 10;
 
     public void CreateAGameMap()
     {
@@ -23,19 +22,21 @@ public class MapController : MonoBehaviour
         for (int rowIndex = 0; rowIndex < _numberOfRows; rowIndex++)
         {
             _columns = new List<FieldController>(_numberOfColumns);
-            
+
             for (int columnIndex = 0; columnIndex < _numberOfColumns; columnIndex++)
             {
                 var fieldPositionX = columnIndex;
                 var fieldPositionY = rowIndex;
-                var spawnField = Instantiate(_fieldPrefab, new Vector2(fieldPositionX, fieldPositionY), Quaternion.identity, _parentGameFields.transform);
+                var spawnField = Instantiate(_fieldPrefab, new Vector2(fieldPositionX, fieldPositionY),
+                    Quaternion.identity, _parentGameFields.transform);
                 _columns.Add(spawnField.GetComponent<FieldController>());
             }
+
             _rows.Add(_columns);
         }
     }
 
-    public List<List<FieldController>> ReturnField()
+    public List<List<FieldController>> ReturnMap()
     {
         return _rows;
     }
@@ -43,5 +44,15 @@ public class MapController : MonoBehaviour
     public FieldController ReturnFieldToTheRight(int rowIndex, int columnIndex)
     {
         return _rows[rowIndex][columnIndex];
+    }
+
+    public int GetNumberOfRows()
+    {
+        return _numberOfRows;
+    }
+
+    public int GetNumberOfColumns()
+    {
+        return _numberOfColumns;
     }
 }
